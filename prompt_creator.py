@@ -3,7 +3,7 @@ import Levenshtein
 import pandas as pd
 from urllib.request import urlretrieve
 
-########################## Part 1: Load DiffusionDB ############################
+
 
 # Download the parquet table
 table_url = 'https://huggingface.co/datasets/poloclub/diffusiondb/resolve/main/metadata.parquet'
@@ -17,9 +17,9 @@ prompts_raw = raw_df['prompt'][0:14000000]
 
 del raw_df  # Free memory
 
-########################## Part 2: Filter by UI Keywords ########################
 
-# Extended keyword list
+
+
 ui_keywords = [
     "mobile UI", "app interface", "UI design", "UX design",
     "responsive layout", "app design", "mobile layout",
@@ -42,7 +42,7 @@ prompts_filtered = broad_filter_ui_prompts(prompts_raw, ui_keywords)
 
 print(f"Prompts after keyword filtering: {len(prompts_filtered)}")  # Debugging
 
-########################## Part 3: Remove Similar Prompts ######################
+
 
 # Sequential function to remove similar strings based on Levenshtein distance
 def remove_similar_strings(strings, threshold=10, max_unique=1000):
@@ -77,7 +77,7 @@ prompts_unique = remove_similar_strings(prompts_filtered, threshold=5, max_uniqu
 
 print(f"Prompts after removing similar ones: {len(prompts_unique)}")  # Debugging
 
-########################## Part 4: Save to CSV #################################
+
 
 # Save the unique UI prompts to a CSV file
 csv_file_name = "prompts_mobile_ui.csv"

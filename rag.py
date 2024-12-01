@@ -27,10 +27,10 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 pipe = pipe.to(device)
 
 
-def get_index(): #creates and returns an in-memory vector store to be used in the application
+def get_index(): 
 
     model_name = "all-MiniLM-L6-v2"
-    encode_kwargs = {'normalize_embeddings': True} # set True to compute cosine similarity
+    encode_kwargs = {'normalize_embeddings': True} 
 
     embeddings = HuggingFaceBgeEmbeddings(
     model_name=model_name,
@@ -38,8 +38,8 @@ def get_index(): #creates and returns an in-memory vector store to be used in th
     encode_kwargs=encode_kwargs
         )
     
-    # Debugging: Check if the file exists
-    file_path = 'prompts_mobile_ui.csv'  # Or the correct relative path to your file
+    
+    file_path = 'prompts_mobile_ui.csv'  
     if not os.path.exists(file_path):
         raise FileNotFoundError(f"The file {file_path} was not found.")
 
@@ -50,13 +50,13 @@ def get_index(): #creates and returns an in-memory vector store to be used in th
     index_from_loader = Qdrant.from_documents(
             documents,
             embeddings,
-            location=":memory:",  # Local mode with in-memory storage only
+            location=":memory:", 
             collection_name="my_documents",
         )
         
-    return index_from_loader #return the index to be cached by the client app
+    return index_from_loader 
 
-def semantic_search(index, original_prompt): #rag client function
+def semantic_search(index, original_prompt): 
         
     relevant_prompts = index.similarity_search(original_prompt)    
 
@@ -67,16 +67,15 @@ def semantic_search(index, original_prompt): #rag client function
     return list_prompts
 
 
-def get_rag_response(original_prompt, selected_prompt): #rag client function
+def get_rag_response(original_prompt, selected_prompt): 
 
     return call_lm(original_prompt, selected_prompt)
 
 
-###############################################################################
-######################### Part 2: SD Model Stetup #############################
 
 
-def get_image_response(prompt_content): #text-to-text client function
+
+def get_image_response(prompt_content): 
     # Generate an image
     with torch.no_grad():
         output = pipe(prompt_content)

@@ -11,7 +11,7 @@ def call_lm(original_prompt, selected_prompt):
         "Content-Type": "application/json"
     }
 
-    # Data payload
+  
     data = {
         "messages": [
             {"role": "system", "content": "This app is to generate prompt for image generation. the user will provide Original Prompt for image generation. Based on Selected prompt, Only slightly revise Original Prompt. \
@@ -25,10 +25,10 @@ def call_lm(original_prompt, selected_prompt):
         "stream": False
     }
 
-    # Make the POST request
+ 
     response = requests.post(url, headers=headers, data=json.dumps(data))
 
-    # Check if the request was successful
+  
     if response.status_code == 200:
         print("Success:")
         data = response.json()
