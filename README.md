@@ -17,7 +17,7 @@ The prompt_creator.py file when runs generators the csv file ( Not needed to run
 The Rag data is prepared in csv format, you're ready to build and run the application.
 When the app runs it converts the datasets and also the prompts into embeddings and uses Qdrant to perform the search
 
-To run the app , run the following command: `streamlit run app.py --server.port 8000`.
+To run the app , run the following command: `streamlit run streamlit_app.py --server.port 8000`.
 
 ## Note:
  * When the App First Runs it will take quite some time to run the Search to create the Vectors Please wait while it does it Do not cancel the process.
