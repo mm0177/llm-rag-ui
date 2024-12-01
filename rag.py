@@ -17,7 +17,7 @@ from lm_studio import call_lm
 
 
 # Use your Hugging Face token
-hf_token = "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"
+hf_token = ""
 
 # Load the pipeline
 pipe = DiffusionPipeline.from_pretrained("CompVis/stable-diffusion-v1-4", use_auth_token=hf_token)
