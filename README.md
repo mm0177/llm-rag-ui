@@ -19,6 +19,9 @@ When the app runs it converts the datasets and also the prompts into embeddings 
 
 To run the app , run the following command: `streamlit run app.py --server.port 8000`.
 
+Note:
+ * When the App First Runs it will take quite some time to run the Search to create the Vectors Please wait while it does it Do not cancel the process.
+
 
 
   
